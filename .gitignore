@@ -1,0 +1,26 @@
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Python-specific files
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# VS Code specific files
+.vscode/
+.history/ 
+
+# Environment variables and sensitive data
+.env
+*.log
+*.sqlite3 # For SQLite databases
+
+# FastAPI-specific files (if applicable, e.g., generated clients)
+# client_generated/
+# Operating System specific files
+.DS_Store
+Thumbs.db
