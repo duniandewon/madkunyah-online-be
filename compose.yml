@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    image: madkunyah-be
+    container_name: madkunyah-be
+    ports: 
+      - "80:80"
+    environment:
+      DATABASE_URL: postgresql+psycopg://produser:prodpass@db-prod:5432/proddb
+      APP_ENV: production
+    depends_on:
+      db-prod:
+        condition: service_healthy
+
+volumes:
+  madkunyah_prod_data:
