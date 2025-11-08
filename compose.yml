@@ -1,10 +1,27 @@
 services:
+  db-prod:
+    image: postgres:16
+    container_name: madkunyah_local_prod_db
+    environment:
+      POSTGRES_USER: produser
+      POSTGRES_PASSWORD: prodpass
+      POSTGRES_DB: proddb
+    ports:
+      - "5432:5432"
+    volumes:
+      - madkunyah_prod_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U produser -d proddb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   app:
     build: .
     image: madkunyah-be
     container_name: madkunyah-be
     ports: 
-      - "80:80"
+      - "8000:8000"
     environment:
       DATABASE_URL: postgresql+psycopg://produser:prodpass@db-prod:5432/proddb
       APP_ENV: production
