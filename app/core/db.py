@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.ext.declarative import declarative_base
 
-from .config import get_settings
+from app.core import get_settings
 
 settings = get_settings()
 
@@ -32,5 +32,4 @@ async def create_db_and_tables():
         await conn.run_sync(Base.metadata.create_all)
 
 
-class Base(DeclarativeBase):
-    pass
+Base = declarative_base()

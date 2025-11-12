@@ -1,8 +1,11 @@
 from pydantic import BaseModel
 from typing import Optional
 
+from .menusizes import MenuSize
+from .options import Option
 
-class BaseMeu(BaseModel):
+
+class BaseMenu(BaseModel):
     name: str
     description: str | None = None
     image: str | None = None
@@ -10,7 +13,7 @@ class BaseMeu(BaseModel):
     category: str
 
 
-class CreateMenu(BaseMeu):
+class CreateMenu(BaseMenu):
     pass
 
 
@@ -22,8 +25,10 @@ class UpdateMenu(BaseModel):
     category: Optional[str] = None
 
 
-class Menu(BaseMeu):
+class Menu(BaseMenu):
     id: int
+    sizes: list[MenuSize] = []
+    options: list[Option] = []
 
     class Config:
         orm_mode = True

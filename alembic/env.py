@@ -8,6 +8,10 @@ from alembic import context
 from app.core.db import Base, DATABASE_URL
 
 import app.models.menus
+import app.models.options
+import app.models.menusizes
+import app.models.menuoptions
+import app.models.menu_menusizes
 
 config = context.config
 

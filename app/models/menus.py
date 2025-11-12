@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float, Text
+from sqlalchemy.orm import relationship
 
-from app.core.db import Base
+from app.core import Base
 
 
 class Menu(Base):
@@ -12,3 +13,8 @@ class Menu(Base):
     image = Column(String(500), nullable=True)
     price = Column(Float, nullable=False)
     category = Column(String(100), nullable=False)
+
+    sizes = relationship(
+        "MenuSize", secondary="menu_menu_sizes", back_populates="menus"
+    )
+    options = relationship("Option", secondary="menu_options", back_populates="menus")
