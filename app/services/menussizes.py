@@ -5,7 +5,7 @@ from app.models.menusizes import MenuSize
 from app.schemas.menusizes import CreateMenuSize, UpdateMenuSize
 
 
-async def get_all_menu_size(db: AsyncSession, skip: int, limit: int) -> MenuSize:
+async def get_all_menu_size(db: AsyncSession, skip: int, limit: int):
     query = select(MenuSize)
 
     result = await db.execute(query.offset(skip).limit(limit))
@@ -15,7 +15,7 @@ async def get_all_menu_size(db: AsyncSession, skip: int, limit: int) -> MenuSize
 
 async def create_menu_size(db: AsyncSession, menu_size: CreateMenuSize) -> MenuSize:
     entity = MenuSize(**menu_size.model_dump())
-    print(f"entity: {entity}")
+
     db.add(entity)
     await db.commit()
     await db.refresh(entity)

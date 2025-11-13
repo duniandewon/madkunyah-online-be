@@ -5,7 +5,7 @@ from sqlalchemy.orm import selectinload
 from typing import TypeVar, Any
 
 from app.models import Menu, MenuSize, Option
-from app.schemas.menus import CreateMenu, UpdateMenu
+from app.schemas.menus import CreateMenu, UpdateMenu, MenuSimple
 
 RelatedModel = TypeVar("RelatedModel", bound=Any)
 
@@ -64,7 +64,7 @@ async def create_menu(db: AsyncSession, item: CreateMenu) -> Menu:
     return new_menu
 
 
-async def get_all_menus(db: AsyncSession, skip: int, limit: int):
+async def get_all_menus(db: AsyncSession, skip: int, limit: int) -> MenuSimple:
     query = select(Menu)
 
     query = query.options(selectinload(Menu.sizes), selectinload(Menu.options))
@@ -77,7 +77,12 @@ async def get_all_menus(db: AsyncSession, skip: int, limit: int):
 
 
 async def get_menu_by_id(db: AsyncSession, menu_id: int):
-    q = await db.execute(select(Menu).where(Menu.id == menu_id))
+    query = select(Menu)
+
+    query = query.options(selectinload(Menu.sizes), selectinload(Menu.options))
+
+    q = await db.execute(query)
+    
     return q.scalars().first()
 
 

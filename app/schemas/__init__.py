@@ -1,4 +1,4 @@
-from app.schemas.menus import Menu, CreateMenu, UpdateMenu
+from app.schemas.menus import Menu, CreateMenu, UpdateMenu, MenuSimple
 from app.schemas.menusizes import CreateMenuSize, MenuSize, UpdateMenuSize
 from app.schemas.options import CreateOption, Option, UpdateOption
 
@@ -12,4 +12,5 @@ __all__ = [
     "CreateOption",
     "Option",
     "UpdateOption",
+    "MenuSimple",
 ]

@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.schemas.menus import Menu, CreateMenu, UpdateMenu
+from app.schemas.menus import Menu, CreateMenu, UpdateMenu, MenuSimple
 from app.core.db import get_session
 
 from app.services import menus
@@ -12,7 +12,7 @@ from app.services import menus
 router = APIRouter()
 
 
-@router.get("/", response_model=List[Menu])
+@router.get("/", response_model=List[MenuSimple])
 async def get_all_menus(
     skip: int = 0,
     limit: int = 10,

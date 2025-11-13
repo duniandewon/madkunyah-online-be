@@ -25,6 +25,13 @@ class UpdateMenu(BaseModel):
     category: Optional[str] = None
 
 
+class MenuSimple(BaseMenu):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
 class Menu(BaseMenu):
     id: int
     sizes: list[MenuSize] = []
