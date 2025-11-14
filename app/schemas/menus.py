@@ -1,8 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
-from .menusizes import MenuSize
-from .options import Option
+from .modifier_group import ModifierGroup
 
 
 class BaseMenu(BaseModel):
@@ -34,8 +33,7 @@ class MenuSimple(BaseMenu):
 
 class Menu(BaseMenu):
     id: int
-    sizes: list[MenuSize] = []
-    options: list[Option] = []
+    modifiers: list[ModifierGroup] = []
 
     class Config:
         orm_mode = True

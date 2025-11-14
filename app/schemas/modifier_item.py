@@ -2,22 +2,22 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-class OptionBase(BaseModel):
+class BaseModifierItem(BaseModel):
     name: str
     price: float
 
 
-class CreateOption(OptionBase):
+class CreateModifierItem(BaseModifierItem):
     pass
 
 
-class UpdateOption(BaseModel):
+class UpdateModifierItem(BaseModel):
     name: Optional[str] = None
     price: Optional[float] = None
 
 
-class Option(OptionBase):
+class ModifierItem(BaseModifierItem):
     id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True

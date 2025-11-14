@@ -14,7 +14,6 @@ class Menu(Base):
     price = Column(Float, nullable=False)
     category = Column(String(100), nullable=False)
 
-    sizes = relationship(
-        "MenuSize", secondary="menu_menu_sizes", back_populates="menus"
+    modifier_groups = relationship(
+        "ModifierGroup", secondary="menu_modifier_links", back_populates="menus"
     )
-    options = relationship("Option", secondary="menu_options", back_populates="menus")

@@ -54,36 +54,18 @@ async def delete_menu(menu_id: int, db=Depends(get_session)):
     return {"message": "Deleted"}
 
 
-@router.post("/{menu_id}/add-size/{menus_size_id}")
-async def add_menu_size(menu_id: int, menu_size_id: int, db=Depends(get_session)):
-    updated = await menus.add_size_to_menu(db, menu_id, menu_size_id)
+@router.post("/{menu_id}/add-modifier/{modifier_id}", response_model=Menu)
+async def add_menu_size(menu_id: int, modifier_id: int, db=Depends(get_session)):
+    updated = await menus.add_modifiers_to_menu(db, menu_id, modifier_id)
 
     if not updated:
         raise HTTPException(status_code=404, detail="Item not found")
     return updated
 
 
-@router.delete("/{menu_id}/add-size/{menus_size_id}")
-async def remove_menu_size(menu_id: int, menu_size_id: int, db=Depends(get_session)):
-    updated = await menus.remove_size_from_menu(db, menu_id, menu_size_id)
-
-    if not updated:
-        raise HTTPException(status_code=404, detail="Item not found")
-    return updated
-
-
-@router.post("/{menu_id}/add-size/{option_id}")
-async def add_options(menu_id: int, option_id: int, db=Depends(get_session)):
-    updated = await menus.add_option_to_menu(db, menu_id, option_id)
-
-    if not updated:
-        raise HTTPException(status_code=404, detail="Item not found")
-    return updated
-
-
-@router.delete("/{menu_id}/add-size/{option_id}")
-async def remove_options(menu_id: int, option_id: int, db=Depends(get_session)):
-    updated = await menus.remove_option_from_menu(db, menu_id, option_id)
+@router.delete("/{menu_id}/remove-modifier/{modifier_id}")
+async def remove_menu_size(menu_id: int, modifier_id: int, db=Depends(get_session)):
+    updated = await menus.remove_modifiers_from_menu(db, menu_id, modifier_id)
 
     if not updated:
         raise HTTPException(status_code=404, detail="Item not found")
