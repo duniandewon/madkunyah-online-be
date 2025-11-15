@@ -1,6 +1,7 @@
 from app.schemas.menus import Menu, CreateMenu, UpdateMenu, MenuSimple
 from app.schemas.modifier_group import (
     ModifierGroup,
+    ModifierGroupSimple,
     CreateModifierGroup,
     UpdateModifierGroup,
 )
@@ -16,6 +17,7 @@ __all__ = [
     "UpdateMenu",
     "MenuSimple",
     "ModifierGroup",
+    "ModifierGroupSimple",
     "CreateModifierGroup",
     "UpdateModifierGroup",
     "ModifierItem",

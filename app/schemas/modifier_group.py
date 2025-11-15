@@ -3,6 +3,7 @@ from typing import Optional
 
 from .modifier_item import ModifierItem
 
+
 class BaseModifierGroup(BaseModel):
     name: str
     type: str
@@ -24,6 +25,13 @@ class UpdateModifierGroup(BaseModel):
 class ModifierGroup(BaseModifierGroup):
     id: int
     modifier_items: list[ModifierItem]
+
+    class Config:
+        orm_mode = True
+
+
+class ModifierGroupSimple(BaseModifierGroup):
+    id: int
 
     class Config:
         orm_mode = True
