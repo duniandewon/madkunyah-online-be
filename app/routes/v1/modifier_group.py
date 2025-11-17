@@ -50,7 +50,7 @@ async def update_modifier_group(
     modifier_group_data: UpdateModifierGroup,
     db: AsyncSession = Depends(get_session),
 ):
-    updated = modifier_group_service.update_modifier_group(
+    updated = await modifier_group_service.update_modifier_group(
         db, modifier_group_id, modifier_group_data
     )
 

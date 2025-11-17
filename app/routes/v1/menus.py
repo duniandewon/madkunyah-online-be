@@ -63,7 +63,7 @@ async def add_menu_size(menu_id: int, modifier_id: int, db=Depends(get_session))
     return updated
 
 
-@router.delete("/{menu_id}/remove-modifier/{modifier_id}")
+@router.delete("/{menu_id}/remove-modifier/{modifier_id}", response_model=Menu)
 async def remove_menu_size(menu_id: int, modifier_id: int, db=Depends(get_session)):
     updated = await menus.remove_modifiers_from_menu(db, menu_id, modifier_id)
 

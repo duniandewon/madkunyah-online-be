@@ -24,14 +24,14 @@ class UpdateModifierGroup(BaseModel):
 
 class ModifierGroup(BaseModifierGroup):
     id: int
-    modifier_items: list[ModifierItem]
+    items: list[ModifierItem] = []
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class ModifierGroupSimple(BaseModifierGroup):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

@@ -28,12 +28,12 @@ class MenuSimple(BaseMenu):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class Menu(BaseMenu):
     id: int
-    modifiers: list[ModifierGroup] = []
+    modifier_groups: list[ModifierGroup] = []
 
     class Config:
-        orm_mode = True
+        from_attributes = True

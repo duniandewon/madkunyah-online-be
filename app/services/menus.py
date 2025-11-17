@@ -81,7 +81,11 @@ async def delete_menu(db: AsyncSession, menu_id: int):
 
 async def add_modifiers_to_menu(db: AsyncSession, menu_id: int, modifier_group_id: int):
     menu_obj = await db.get(
-        menu_db, menu_id, options=[selectinload(menu_db.modifier_groups)]
+        menu_db,
+        menu_id,
+        options=[
+            selectinload(menu_db.modifier_groups).selectinload(modifier_group_db.items)
+        ],
     )
     if not menu_obj:
         return None
@@ -94,7 +98,7 @@ async def add_modifiers_to_menu(db: AsyncSession, menu_id: int, modifier_group_i
         menu_obj.modifier_groups.append(group_obj)
 
     await db.commit()
-    await db.refresh(menu_obj)
+    await db.refresh(menu_obj, attribute_names=["modifier_groups"])
 
     return menu_obj
 
@@ -118,6 +122,6 @@ async def remove_modifiers_from_menu(
         pass
 
     await db.commit()
-    await db.refresh(menu_obj)
+    await db.refresh(menu_obj, attribute_names=["modifier_groups"])
 
     return menu_obj
