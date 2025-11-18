@@ -8,7 +8,7 @@ class BaseModifierItem(BaseModel):
 
 
 class CreateModifierItem(BaseModifierItem):
-    pass
+    group_id: int
 
 
 class UpdateModifierItem(BaseModel):
